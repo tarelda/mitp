@@ -16,8 +16,9 @@ void display(student *s){
 void init(student *s){
 	memset(s, 0, sizeof(student) );
 	scanf("%d", &(s->id) );
-	
+	s->name = malloc(sizeof(char) * 20 );
 	scanf("%s", s->name);
+	s->surname = malloc(sizeof(char) * 20);
 	scanf("%s", s->surname);
 }
 
@@ -31,15 +32,18 @@ int main(){
 	
 	init(&mitp2);
 	
-	if (memcmp(&mitp1, &mitp2, sizeof(student) )){
+	if (!memcmp(&mitp1, &mitp2, sizeof(student) )){
 		puts("Peeeelno krow :D");
 	}
 	
+	free(mitp2.name);
+	free(mitp2.surname);
+
 	memcpy(&mitp2, &mitp1, sizeof(student) );
 	
-	if (memcmp(&mitp1, &mitp2, sizeof(student) )){
+	if (!memcmp(&mitp1, &mitp2, sizeof(student) )){
 		puts("Peeeelno krow Tomaszow :D");
 	}
-	
+
 	return 0;
 }
